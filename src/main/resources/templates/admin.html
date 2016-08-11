@@ -17,6 +17,7 @@
             </li>
         </ul>
         <form action="" method="post" th:object="${flashCard}">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
             <label for="term">Term:</label>
             <input type="text" value="" th:field="*{term}" id="term"/>
             <label for="definition">Definition:</label>

@@ -1,7 +1,11 @@
 package com.teamtreehouse.flashy.bootstrap;
 
 import com.teamtreehouse.flashy.domain.FlashCard;
+import com.teamtreehouse.flashy.domain.Role;
+import com.teamtreehouse.flashy.domain.User;
 import com.teamtreehouse.flashy.repositories.FlashCardRepository;
+import com.teamtreehouse.flashy.repositories.RoleRepository;
+import com.teamtreehouse.flashy.repositories.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -16,6 +20,14 @@ public class DatabaseLoader implements ApplicationRunner {
   @Autowired
   private FlashCardRepository flashCardRepository;
 
+  @Autowired
+  UserRepository userRepository;
+
+  @Autowired
+  RoleRepository roleRepository;
+
+
+
   public void run(ApplicationArguments args) throws Exception {
     List<FlashCard> cards = new ArrayList<>();
     cards.add(new FlashCard("JDK", "Java Development Kit"));
@@ -27,6 +39,14 @@ public class DatabaseLoader implements ApplicationRunner {
     cards.add(new FlashCard("JCL", "Java Class Library"));
     cards.add(new FlashCard("JVM", "Java Virtual Machine"));
     flashCardRepository.save(cards);
+
+
+    Role role = new Role();
+    role.setName("ROLE_USER");
+    roleRepository.save(role);
+
+    User user = new User("user", "password", true, role);
+    userRepository.save(user);
   }
 
 }

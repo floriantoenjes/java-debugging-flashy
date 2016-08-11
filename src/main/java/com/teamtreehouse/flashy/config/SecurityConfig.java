@@ -1,6 +1,7 @@
 package com.teamtreehouse.flashy.config;
 
 import com.teamtreehouse.flashy.domain.FlashMessage;
+import com.teamtreehouse.flashy.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,7 +29,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Autowired
   public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
+    auth.userDetailsService(userService);
+//        .passwordEncoder(passwordEncoder());
   }
 
   @Bean
